@@ -11,9 +11,9 @@ def active_passcards_view(request):
     for visitor in active_visitors:
         delta = localtime() - visitor.entered_at
         delta = datetime.timedelta(seconds=int(delta.total_seconds()))
-        print(f"\nЗашёл в хранилище, время по Москве:\n{visitor.entered_at}")
+        print(f"\n{visitor.passcard.owner_name}")
+        print(f"Зашёл в хранилище, время по Москве:\n{visitor.entered_at}")
         print(f"Находится в хранилище:\n{delta}")
-
 
     active_passcards = Passcard.objects.filter(is_active=True).all()
     context = {
