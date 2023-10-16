@@ -7,12 +7,12 @@ import datetime
 def active_passcards_view(request):
     # Программируем здесь
 
-    active_visitor = Visit.objects.filter(leaved_at__isnull=True).first()
-    delta = localtime() - active_visitor.entered_at
-    delta = datetime.timedelta(seconds=int(delta.total_seconds()))
-
-    print(f"\nЗашёл в хранилище, время по Москве:\n{active_visitor.entered_at}")
-    print(f"Находится в хранилище:\n{delta}")
+    active_visitors = Visit.objects.filter(leaved_at__isnull=True).all()
+    for visitor in active_visitors:
+        delta = localtime() - visitor.entered_at
+        delta = datetime.timedelta(seconds=int(delta.total_seconds()))
+        print(f"\nЗашёл в хранилище, время по Москве:\n{visitor.entered_at}")
+        print(f"Находится в хранилище:\n{delta}")
 
 
     active_passcards = Passcard.objects.filter(is_active=True).all()
