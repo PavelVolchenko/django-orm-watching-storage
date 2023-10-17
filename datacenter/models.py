@@ -44,3 +44,8 @@ class Visit(models.Model):
         elif m > 0 and h == 0:
             return f"{m}мин {s % 60}сек"
         return f"{s}сек."
+
+    def is_visit_long(self, minutes=60):
+        if self.get_duration().total_seconds() > minutes * 60:
+            return True
+        return False
