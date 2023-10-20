@@ -1,4 +1,10 @@
 .env
+*.replit
+*.lock
+*.toml
+.cache/
+.config/
+replit.nix
 # Compiled source #
 ###################
 *.com
