@@ -1,19 +1,15 @@
 import os
+import dj_database_url
+from django.conf.global_settings import DATABASES
 from environs import Env
 
 env = Env()
 env.read_env()
 
-DATABASES = {
-    'default': {
-        'ENGINE': env.str('ENGINE'),
-        'HOST': env.str('HOST'),
-        'PORT': env.int('PORT'),
-        'NAME': env.str('NAME'),
-        'USER': env.str('USER'),
-        'PASSWORD': env.str('PASSWORD'),
-    }
-}
+DATABASES['default'] = dj_database_url.config(
+    conn_max_age=600,
+    conn_health_checks=True,
+)
 
 INSTALLED_APPS = ['datacenter']
 
@@ -23,7 +19,7 @@ DEBUG = env.bool('DEBUG')
 
 ROOT_URLCONF = 'project.urls'
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES = [

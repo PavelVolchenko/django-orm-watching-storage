@@ -14,14 +14,7 @@ pip install -r requirements.txt
 python manage.py runserver 0.0.0.0:8000
 ```
 ### Как подключить БД
-В папке скрипта создайте файл с названием .env и пропишите параметры доступа к БД. Пример:
+В папке скрипта создайте файл с названием .env и пропишите параметры доступа согласно [URL schema](https://github.com/jazzband/dj-database-url#url-schema). Пример подключения PostgreSQL:
 ```
-ENGINE=<django.db.backends>
-HOST=<host>
-PORT=<port>
-NAME=<name>
-USER=<user>
-PASSWORD=<password>
-SECRET_KEY=<secret key>
-DEBUG=<debug>
+postgres://USER:PASSWORD@HOST:PORT/NAME
 ```
